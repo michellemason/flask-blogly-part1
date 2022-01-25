@@ -18,7 +18,7 @@ class User(db.Model):
     last_name = db.Column(db.Text, nullable = False)
     image_url = db.Column(db.Text, default=DEFAULT_IMG)
 
-    posts = db.relationship("Post", backref="user")
+    posts = db.relationship("Post", backref="user", cascade="all, delete-orphan")
 
     @property
     def full_name(self):
@@ -35,6 +35,6 @@ class Post(db.Model):
         user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
 
         @property
-        def friendly_data(self):
+        def friendly_date(self):
                 """return nicely formated date"""
                 return self.created_at.strftime("%a %b %-d %Y, %-I:%M %p")

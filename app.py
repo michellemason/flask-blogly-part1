@@ -27,8 +27,9 @@ def list_users():
 def show_all_users():
     """Show all users with links to details for them"""
     users = User.query.order_by(User.last_name, User.first_name).all()
+    posts = Post.query.order_by(Post.created_at.desc()).limit(3).all()
     # This orders users by last name first
-    return render_template('home.html', users=users)
+    return render_template('home.html', users=users, posts=posts)
 
 @app.route('/users/new', methods=["GET"])
 def show_add_user_form():
@@ -99,3 +100,35 @@ def add_post(user_id):
     db.session.commit()
 
     return redirect(f"/users/{user_id}")
+
+@app.route('/posts/<int:post_id>')
+def show_post(post_id):
+    """Show post and edit/delete buttons"""
+    post = Post.query.get_or_404(post_id)
+    return render_template('post_details.html', post=post)
+
+@app.route('/posts/<int:post_id>/edit')
+def edit_post(post_id):
+    """Show form to edit post & cancel button func"""
+    post = Post.query.get_or_404(post_id)
+    return render_template('edit_post.html', post=post)
+
+@app.route('/posts/<int:post_id>/edit', methods=["POST"])
+def handle_post_edit(post_id):
+    """Handles edit of post & redirects to post view"""
+    post = Post.query.get_or_404(post_id)
+    post.title = request.form['title']
+    post.content = request.form['content']
+
+    db.session.add(post)
+    db.session.commit()
+
+    return redirect(f"/users/{post.user_id}")
+
+@app.route('/posts/<int:post_id>/delete', methods=["POST"])
+def delete_post(post_id):
+    """Deletes the post"""
+    post = Post.query.get_or_404(post_id)
+    db.session.delete(post)
+    db.session.commit()
+    return redirect(f'/users/{post.user_id}')

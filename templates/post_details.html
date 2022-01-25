@@ -10,19 +10,16 @@
 <body>
     <h1>{{post.title}}</h1>
     
-        {% for post in posts %}
-        <p>{{post.content}}</p>
-        {% endfor %}
-        <p><i>By {{post.user_post.full_name}}</i></p>
+    <p>{{post.content}}</p>
+    
+    <p><i>By {{post.user.full_name}} on {{post.friendly_date}}</i></p>
 
-        <a href="/users/{{user.id}}"><button name="cancel">Cancel</button></a>
+        
         <form>
-            <button class="btn btn-primary btn-sm" formaction="EDITPOSTROUTE" formmethod="GET">Edit</button>
-            <button class="btn btn-danger btn-sm" formaction="DELETEPOSTROUTE" formmethod="POST">Delete</button>
+            <button name="cancel" formmethod="GET" formaction="/users/{{post.user_id}}">Cancel</button>
+            <button class="btn btn-primary btn-sm" formaction="/posts/{{post.id}}/edit" formmethod="GET">Edit</button>
+            <button class="btn btn-danger btn-sm" formaction="/posts/{{post.id}}/delete" formmethod="POST">Delete</button>
         </form>
 
-        <button class="btn btn-primary btn-sm" type="submit">Add Post</button>
-    </form>
-    <a href="/users"><button class="btn btn-danger btn-sm" name="cancel">Cancel</button></a>
 </body>
 </html>

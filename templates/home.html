@@ -14,9 +14,18 @@
         {% for user in  users %}
         <li><a href="/users/{{user.id}}">{{user.full_name}}</a> </li>
         {% endfor %}
-    </ul>    
+    </ul>   
 
-     <p><a href="/users/new"><button>Add User</button></a></p>
+    <p><a href="/users/new"><button>Add User</button></a></p>
+    
+    <h2>Recent Posts</h2>
+    {% for post in posts %}
+    <h3 class="mt-4">
+        <a href="/posts/{{post.id}}">{{post.title}}</a>
+    </h3>
+    <p>{{post.content}}</p>
+    <p><small>By {{post.user.full_name}} on {{post.friendly_date}}</small></p>
+    {% endfor %}
     
 </body>
 </html>
