@@ -3,7 +3,7 @@
 from crypt import methods
 from importlib.resources import read_text
 from flask import Flask, request, render_template, redirect
-from models import db, connect_db, User
+from models import db, connect_db, User, Post
 from flask_debugtoolbar import DebugToolbarExtension
 
 app = Flask(__name__)
@@ -80,3 +80,22 @@ def delete_user(user_id):
     db.session.commit()
     return redirect('/users')
 
+@app.route('/users/<int:user_id>/posts/new')
+def show_post_form(user_id):
+    """Show form to add a users post"""
+    user = User.query.get_or_404(user_id)
+    return render_template('new_post.html', user=user)
+
+@app.route('/users/<int:user_id>/posts/new', methods=["POST"])
+def add_post(user_id):
+    """handle add form, add post & redirect to user detail"""
+    user = User.query.get_or_404(user_id)
+    title = request.form['title']
+    content = request.form['content']
+
+    new_post = Post(title=title, content=content, user=user)
+    
+    db.session.add(new_post)
+    db.session.commit()
+
+    return redirect(f"/users/{user_id}")

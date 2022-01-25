@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>User Details</title>
 </head>
 <body>
+    <div class="container">
 
     <div class="row">
         {% if user.image_url %}
@@ -23,7 +26,21 @@
                 <button class="btn btn-danger btn-sm" formaction="/users/{{user.id}}/delete" formmethod="POST">Delete</button>
             </form>
         </div>
+        <div class="col-sm-10 col-12">
+        <h3>Posts</h3>
+        <ul>
+            {% for post in  user.posts %}
+            <li>
+                <a href="/posts/{{post.id}}">{{post.title}}</a>
+                <small>{{post.friendly_date}}</small>
+            </li>
+            {% endfor %}
+        </ul>   
+        <a href="/users/{{user.id}}/posts/new"><button formaction="/users/{{user_id}}/posts/new" formmethod="GET">Add Post</button></a>
+        </div>
+
     </div>
-    <!-- Will need to add routes for these two buttons. Check out this link for help https://kanchanardj.medium.com/redirecting-to-another-page-with-button-click-in-python-flask-c112a2a2304c -->
+    <a href="/">Go Home</a>
+    </div>
 </body>
 </html>

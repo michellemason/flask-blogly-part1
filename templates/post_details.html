@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Post Details</title>
+</head>
+<body>
+    <h1>{{post.title}}</h1>
+    
+        {% for post in posts %}
+        <p>{{post.content}}</p>
+        {% endfor %}
+        <p><i>By {{post.user_post.full_name}}</i></p>
+
+        <a href="/users/{{user.id}}"><button name="cancel">Cancel</button></a>
+        <form>
+            <button class="btn btn-primary btn-sm" formaction="EDITPOSTROUTE" formmethod="GET">Edit</button>
+            <button class="btn btn-danger btn-sm" formaction="DELETEPOSTROUTE" formmethod="POST">Delete</button>
+        </form>
+
+        <button class="btn btn-primary btn-sm" type="submit">Add Post</button>
+    </form>
+    <a href="/users"><button class="btn btn-danger btn-sm" name="cancel">Cancel</button></a>
+</body>
+</html>

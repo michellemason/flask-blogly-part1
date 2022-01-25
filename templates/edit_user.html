@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Edit User Details</title>
 </head>
 <body>
@@ -14,10 +16,9 @@
         <label for="last_name">Last Name</label>
         <input type="text" name="lname" placeholder="Last Name">
         <label for="image_url">Image URL</label>
-        <input type="url" name="url" placeholder="Image URL For This User">
+        <input type="url" name="url" placeholder="Image URL">
         <button type="submit">Save</button>
-        <!-- CHECK THIS CANCEL LINK, OR USE CODE: <a href="/users" class="btn btn-outline-info">Cancel</a> WITH BOOTSTRAP -->
-        <a href="/users/{{user.id}}"><button name="cancel">Cancel</button></a>
     </form>
+    <a href="/users/{{user.id}}"><button name="cancel">Cancel</button></a>
 </body>
 </html>
