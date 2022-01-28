@@ -1,4 +1,4 @@
-from models import User, db 
+from models import User, Tag, db 
 from app import app
 
 db.drop_all()
@@ -13,4 +13,15 @@ db.session.add(mich)
 db.session.add(jake)
 db.session.add(walnut)
 db.session.add(fergie)
+db.session.commit()
+
+fun = Tag(name='Fun')
+zwonky = Tag(name='zwonky')
+boop = Tag(name='Boop')
+beep = Tag(name='Beep')
+
+db.session.add(fun)
+db.session.add(zwonky)
+db.session.add(boop)
+db.session.add(beep)
 db.session.commit()

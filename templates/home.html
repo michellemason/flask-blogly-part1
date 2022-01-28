@@ -19,13 +19,27 @@
     <p><a href="/users/new"><button>Add User</button></a></p>
     
     <h2>Recent Posts</h2>
+
     {% for post in posts %}
-    <h3 class="mt-4">
-        <a href="/posts/{{post.id}}">{{post.title}}</a>
-    </h3>
-    <p>{{post.content}}</p>
-    <p><small>By {{post.user.full_name}} on {{post.friendly_date}}</small></p>
-    {% endfor %}
+    <h2 class="mt-4">
+      <a href="/posts/{{ post.id }}">{{ post.title }}</a>
+    </h2>
+    <p>{{ post.content }}</p>
+    <p>
+      <small>By {{ post.user.full_name }} on {{ post.friendly_date }}</small>
+    </p>
     
+    {% if post.tags %}
+    <p>
+      <b>Tags:</b>
+      {% for tag in post.tags %}
+      <a href="/tags/{{ tag.id }}"><i class="badge badge-primary">{{ tag.name }}</i></a>
+      {% endfor %}
+    </p>
+    {% endif %}
+    
+    {% endfor %}
+
+
 </body>
 </html>

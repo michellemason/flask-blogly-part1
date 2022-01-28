@@ -26,6 +26,15 @@
             </div>
             </div>
 
+            <div class="form-check">
+            {% for tag in tags %}
+            <div>
+            <input class="form-check-input" type="checkbox" value="{{tag.id}}" id="tag_{{tag.id}}" {% if tag in post.tags %}checked{% endif %} name="tags">
+            <label class="form-check-label" for="tag_{{tag.id}}">{{tag.name}}</label>
+            </div>
+            {% endfor %}
+            </div>
+
             <button class="btn btn-danger btn-sm" formaction="/posts/{{post.id}}" formmethod="GET">Cancel</button>
             <button class="btn btn-success btn-sm" type="submit">Submit Edits</button>
         </form>

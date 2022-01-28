@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>All Tags</title>
+</head>
+<body>
+    <h1>All Tags</h1>
+        
+            <ul>
+                {% for tag in tags %} 
+                <li><a href="/tags/{{tag.id}}">{{tag.name}}</a></li>
+                {% endfor %}
+            </ul>
+            <p><a class="btn btn-primary" href="/tags/new">Add Tag</a></p>
+            
+</body>
+</html>
